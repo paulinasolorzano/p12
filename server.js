@@ -13,9 +13,11 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 const upload = multer({ dest: 'uploads/' });
 
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
