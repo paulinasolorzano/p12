@@ -1,4 +1,3 @@
-
 const express = require('express');
 const multer = require('multer');
 const forge = require('node-forge');
@@ -13,16 +12,15 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
+// Servir archivos estáticos desde public (incluyendo index.html automáticamente)
 app.use(express.static(path.join(__dirname, 'public')));
 
 const upload = multer({ dest: 'uploads/' });
 
-//app.use(express.static(__dirname));
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
+// Ya no necesitas esta ruta porque Express sirve index.html automáticamente
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 app.post('/verificar', upload.single('p12file'), (req, res) => {
   const password = req.body.password;
