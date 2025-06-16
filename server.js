@@ -4,20 +4,16 @@ const multer = require('multer');
 const forge = require('node-forge');
 const fs = require('fs');
 const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const fs = require('fs');
+// Verificar carpeta de uploads
 const uploadDir = './uploads';
-
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
 const upload = multer({ dest: 'uploads/' });
-
-
 
 app.use(express.static(__dirname));
 
@@ -54,7 +50,7 @@ app.post('/verificar', upload.single('p12file'), (req, res) => {
     console.error(err);
     res.send(`<h3 style="color:red;">❌ Error al validar el certificado</h3><p>${err.message}</p><a href="/">Volver</a>`);
   } finally {
-    fs.unlinkSync(filePath); // eliminar archivo temporal
+    fs.unlinkSync(filePath);
   }
 });
 
