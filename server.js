@@ -4,10 +4,20 @@ const multer = require('multer');
 const forge = require('node-forge');
 const fs = require('fs');
 const path = require('path');
+
+const fs = require('fs');
+const uploadDir = './uploads';
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const upload = multer({ dest: 'uploads/' });
+
+
 
 app.use(express.static(__dirname));
 
