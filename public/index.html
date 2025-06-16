@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Acceso con Certificado Digital</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 2rem; max-width: 600px; margin: auto;">
+  <h2>Acceso al sistema con certificado digital</h2>
+  <form id="certForm" enctype="multipart/form-data" method="POST" action="/verificar" >
+    <label for="p12file">Selecciona tu archivo .p12:</label><br/>
+    <input type="file" id="p12file" name="p12file" required /><br/><br/>
+
+    <label for="password">Contraseña del certificado:</label><br/>
+    <input type="password" id="password" name="password" required /><br/><br/>
+
+    <button type="submit">Verificar acceso</button>
+  </form>
+  <div id="resultado" style="margin-top: 2rem;"></div>
+</body>
+</html>
