@@ -11,6 +11,10 @@ const upload = multer({ dest: 'uploads/' });
 
 app.use(express.static(__dirname));
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
 app.post('/verificar', upload.single('p12file'), (req, res) => {
   const password = req.body.password;
   const filePath = req.file.path;
